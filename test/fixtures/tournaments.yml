@@ -1,0 +1,8 @@
+one: {
+  slug: "test_tournament",
+  name: "Test Tournament",
+  start_at: 1545175800,
+  end_at: 1545192000,
+  api_id: 1
+}
+

@@ -5,19 +5,11 @@ require 'open-uri'
 
 class TournamentPuller
   PER_PAGE = 5
-  def pull_all_tournament_codes
+  def all_tournament_codes
     (1..num_pages).map do |page_num|
       sleep(0.5) # rate limit
       page = web_page(page_num)
-      page.search("div.TournamentCardHeading").map do |head|
-        link = head.at_css('div.TournamentCardHeading__title a')
-        name = link.inner_text 
-        href = link["href"]
-        date = head.at_css('div.TournamentCardHeading__information span').
-                    inner_text
-        
-        { name: name, href: href, date: date }
-      end
+      TournamentPage.new(page).tournament_data
     end
   end
 
